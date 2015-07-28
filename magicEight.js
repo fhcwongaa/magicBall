@@ -37,10 +37,21 @@ var server = net.createServer(function(connection){
 
 	connection.on('data',function(input){
 		var randomnumber = Math.floor(Math.random() * answer.length) + 1
+		var questionMark = false;
 		console.log(randomnumber);
-		var questions = input.toString().trim();
-		connection.write(answer[randomnumber] + '\n');
-		connection.write("Ask a Question.... \n");
+		var questions = input.toString().trim().split();
+		questions.forEach(function(elem){
+			if(elem === '?'){
+				questionMark = true;
+			}
+		})
+		if(questionMark){
+			connection.write(answer[randomnumber] + '\n');
+			connection.write("Ask a Question.... \n");
+		}else{
+			conneciton.write("That is not a question...\n");
+		}
+
 	})
 
 })
