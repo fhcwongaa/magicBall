@@ -49,7 +49,7 @@ var server = net.createServer(function(connection){
 			connection.write(answer[randomnumber] + '\n');
 			connection.write("Ask a Question.... \n");
 		}else{
-			conneciton.write("That is not a question...\n");
+			connection.write("That is not a question...\n");
 		}
 
 	})
